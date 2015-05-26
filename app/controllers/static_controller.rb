@@ -4,8 +4,8 @@ class StaticController < ApplicationController
   end
 
   def search
-  	@results = params[:search][:artist]
-  	
+  	artist = RSpotify::Artist.search(params[:search][:artist]).first
+  	@results = artist.top_tracks(:US)
   	render :home
   end
 
