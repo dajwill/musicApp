@@ -3,4 +3,41 @@
 	<%= f.submit 'Search' %>
 <% end %>
 
-<%= @results %>
+<%= link_to 'Sign in with Spotify', '/auth/spotify' %>
+
+<% if params.include?(:search) %>
+	<div id="src-results">
+	<% @results.each do |song| %>
+		<div class="ui cards">
+		  <div class="card">
+		    <a class="image">
+		      <img src="<%= song["image"] %>">
+		    </a>
+		    <div class="content">
+		      <a class="header"><%= song["name"] %></a>
+		      <div class="meta">
+		        <a><%= song["album"] %></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<% end %>
+	</div>
+<% end %>
+<!-- 
+<div class="ui cards">
+  <div class="card">
+    <a class="image">
+      <img src="">
+    </a>
+    <div class="content">
+      <a class="header"></a>
+      <div class="meta">
+        <a>Friends</a>
+      </div>
+      <div class="description">
+        Elliot Fu is a film-maker from New York.
+      </div>
+    </div>
+  </div>
+</div> -->
