@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'user/show'
   get '/auth/spotify/callback', to: 'users#spotify'
   root 'static#home'
+  get '/about' => 'static#about'
   get '/search' => 'static#search', as: 'search'
 
   # The priority is based upon order of creation: first created -> highest priority.
