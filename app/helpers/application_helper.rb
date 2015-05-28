@@ -7,4 +7,8 @@ def top_tracks(tracks)
   return track_list
 end
 
+def artist_search(search)
+	# artist = R
+end
+
 end
