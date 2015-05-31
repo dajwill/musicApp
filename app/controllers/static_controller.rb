@@ -8,7 +8,7 @@ class StaticController < ApplicationController
   	artist = RSpotify::Artist.search(params[:query]).first
     songs = RSpotify::Track.search(params[:query])
     albums = RSpotify::Album.search(params[:query])
-    @search = {"artist" => artist, "songs" => songs, "albums" => albums}
+    @search = user_search(params[:query])
   	tracks = artist.top_tracks(:US)
   	@results = top_tracks(tracks)
   	render :home

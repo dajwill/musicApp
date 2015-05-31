@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'pry-rails'
+# gem 'pry-rails'
 gem 'rspotify'
 gem 'pandora'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
