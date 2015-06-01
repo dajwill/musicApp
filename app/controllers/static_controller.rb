@@ -11,6 +11,13 @@ class StaticController < ApplicationController
     @search = user_search(params[:query])
   	tracks = artist.top_tracks(:US)
   	@results = top_tracks(tracks)
+
+    # respond_to do |format|
+    #   format.json
+    #   format.js
+    #   format.html
+    # end
+
   	render :home
 
   end
