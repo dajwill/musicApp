@@ -1,10 +1,13 @@
-<%= form_tag search_path, method: :get, :id => "search" do %>
-	<%= text_field_tag :query %>
-	<%= submit_tag 'Search' %>
+<%= form_tag search_path, method: :get, remote: true do %>
+  <%= text_field_tag :query %>
 <% end %>
 
 <%= link_to 'Sign in with Spotify', '/auth/spotify' %>
 
-<% if params.include?(:query) %>
-	<div id="music"><%= render 'music' %></div>
-<% end %>
+<div id="music">
+  <%= render 'music' %>
+</div>
+
+<div id="queue">
+  <%-# render 'queue' %>
+</div>

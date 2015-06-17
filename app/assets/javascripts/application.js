@@ -14,12 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic-ui
-//= require_tree .
-
-
-$(function() {
-  $("#search input").keyup(function() {
-    $.get($("search").attr("action", $("#search").serialize(), null, "json"));
-    return false;
-  });
-});
+//= require_tree ./vendor
+//= require_tree ./lib

@@ -1,0 +1,3 @@
+$("#music").html("<%= j render("music") %>");
+$('#queue').html("<%= j render("queue") %>");
+history.pushState(null, '', '<%= url_for(params) %>')

@@ -8,7 +8,7 @@ def top_tracks(tracks)
 end
 
 def artist_search(query)
-	artists = RSpotify::Artist.search(query)
+  artists = RSpotify::Artist.search(query)
   return artists
 end
 
