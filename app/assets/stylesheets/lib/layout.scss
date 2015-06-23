@@ -1,0 +1,7 @@
+#songs iframe {
+  display: none;
+
+  &.shown {
+    display: block;
+  }
+}

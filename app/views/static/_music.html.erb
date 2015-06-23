@@ -1,10 +1,10 @@
 <% if @search.present? %>
   <div class="ui tabular menu">
-    <div class="item" data-tab="artists">Artists</div>
+    <div class="active item" data-tab="artists">Artists</div>
     <div class="item" data-tab="albums">Albums</div>
     <div class="item" data-tab="songs">Songs</div>
   </div>
-  <div class="ui tab" data-tab="artists">
+  <div class="ui tab active" data-tab="artists">
     <h1>Artists</h1>
     <div class="ui cards">
       <% @search["artist"].each do |artist| %>
@@ -32,23 +32,21 @@
       <% end %>
     </div>
   </div>
-  <div class="ui tab" data-tab="songs">
+  <div class="ui tab" data-tab="songs" id="songs">
     <h1>Songs</h1>
-    <% @search["tracks"].each do |song| %>
-      <div class="ui list">
+    <div class="ui list">
+      <% @search["tracks"].each do |song| %>
         <div class="item">
           <img class="ui avatar image" src="<%= song.album.images.first["url"] %>">
           <div class="content">
             <a class="header"><%= song.name %></a>
             <div class="description"><%= song.album.name %></div>
           </div>
+          <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
         </div>
-      </div>
-      <%-# <%= link_to "Play", queue_path, :remote => true %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-  <p><%= @search["tracks"].first.uri%></p>
-  <iframe src="https://embed.spotify.com/?uri=<%= @search["tracks"].first.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 <% elsif @search.is_a? Hash %>
   <p>No results found.</p>
 <% end %>
