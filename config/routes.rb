@@ -1,18 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'user/new'
+  resources :artists, only: [:show]
 
-  get 'user/create'
-
-  get 'user/update'
-
-  get 'user/edit'
-
-  get 'user/destroy'
-
-  get 'user/index'
-
-  get 'user/show'
   get '/auth/spotify/callback', to: 'users#spotify'
   root 'static#home'
   get '/about' => 'static#about'

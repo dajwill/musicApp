@@ -1,11 +1,15 @@
 class StaticController < ApplicationController
-  include ApplicationHelper
+  include MusicHelper
 
   def home
   end
 
   def search
-    @search = user_search(params[:query]) if params[:query].present?
+    if params[:artist].present?
+      @search = artist_find(params[:artist])
+    else
+      @search = user_search(params[:query]) if params[:query].present?
+    end
 
     render :home
 

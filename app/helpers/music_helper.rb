@@ -1,4 +1,4 @@
-module ApplicationHelper
+module MusicHelper
 
 def top_tracks(tracks)
   track_list = tracks.map do |t|
@@ -23,8 +23,25 @@ def album_search(query)
 end
 
 def user_search(query)
-  results = {"artist" => artist_search(query), "tracks" => track_search(query), "album" => album_search(query)}
-  return results
+  {"artist" => artist_search(query), "tracks" => track_search(query), "album" => album_search(query)}
+end
+
+def artist_find(query)
+  RSpotify::Artist.find(query)
+end
+
+def track_find(query)
+  tracks = RSpotify::Track.find(query)
+  return tracks
+end
+
+def album_find(query)
+  albums = RSpotify::Album.find(query)
+  return albums
+end
+
+def get_albums (artist_id)
+  RSpotify::Artist.find(artist_id)
 end
 
 end

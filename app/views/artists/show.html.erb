@@ -1,0 +1,29 @@
+<h1><%= @artist.name %></h1>
+
+<h3>Albums</h3>
+<div class="ui 6 doubling cards">
+  <% @artist.albums.each do |album| %>
+    <div class="card" data-album="<%= album.id %>">
+      <a class="image">
+        <img src="<%= album.images.first["url"] %>">
+      </a>
+      <div class="content">
+        <a class="header"><%= album.name %></a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h3>Songs</h3>
+<div class="ui list">
+  <% @artist.top_tracks(:US).each do |song| %>
+    <div class="item" data-song="<%= song.id %>">
+      <img class="ui avatar image" src="<%= song.album.images.first["url"] %>">
+      <div class="content">
+        <a class="header"><%= song.name %></a>
+        <div class="description"><%= song.album.name %></div>
+      </div>
+      <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
+    </div>
+  <% end %>
+</div>

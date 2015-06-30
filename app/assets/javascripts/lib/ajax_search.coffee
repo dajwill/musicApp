@@ -1,7 +1,7 @@
 $ ->
 
   updateSearch = _.debounce ->
-    console.log "Results"
+    # console.log "Results"
     $(@).parent('form').submit()
   , 500
 

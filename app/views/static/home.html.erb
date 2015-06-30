@@ -1,13 +1,20 @@
-<%= form_tag search_path, method: :get, remote: true do %>
-  <%= text_field_tag :query %>
-<% end %>
-
-<%= link_to 'Sign in with Spotify', '/auth/spotify' %>
-
-<div id="music">
-  <%= render 'music' %>
+<div class="ui menu">
+  <div class="item">
+    <div class="ui transparent icon input">
+      <%= form_tag search_path, method: :get, class: 'ui-search',remote: true do %>
+        <%= text_field_tag :query %>
+      <% end %>
+      <i class="search link icon"></i>
+    </div>
+  </div>
 </div>
+<div class="ui segment">
 
-<div id="queue">
-  <%-# render 'queue' %>
+  <div id="music">
+    <%= render 'music' %>
+  </div>
+
+  <div id="queue">
+    <%-# render 'queue' %>
+  </div>
 </div>
