@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get '/soundcloud' => 'soundcloud#home'
+  get '/soundcloud/search' => 'soundcloud#search', as: 'sc_search'
+
+  resources :albums, only: [:show]
+
   resources :artists, only: [:show]
 
   get '/auth/spotify/callback', to: 'users#spotify'

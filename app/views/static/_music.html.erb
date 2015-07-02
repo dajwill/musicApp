@@ -17,7 +17,7 @@
               <% end %>
             <% end %>
             <div class="content">
-            <%= link_to artist.name, artist_path(artist.id), class:'content' %>
+              <%= link_to artist.name, artist_path(artist.id), class:'content' %>
             </div>
           </div>
         <% end %>
@@ -33,7 +33,7 @@
             <img src="<%= album.images.first["url"] %>">
           </a>
           <div class="content">
-            <a class="header"><%= album.name %></a>
+            <%= link_to album.name, album_path(album.id), class:'content' %>
           </div>
         </div>
       <% end %>
@@ -48,6 +48,11 @@
           <div class="content">
             <a class="header"><%= song.name %></a>
             <div class="description"><%= song.album.name %></div>
+            <% if song.explicit == true %>
+              <div class="explicit">
+                <p>Explicit</p>
+              </div>
+            <% end %>
           </div>
           <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
         </div>
