@@ -24,11 +24,24 @@
         </div>
       <% end %>
     </div>
-    <% @results.each do |result| %>
-      <p><%= result.user.username %></p>
+    <h1>Artists</h1>
+    <div class="ui cards">
+      <% @test.each do |artist| %>
+        <%= link_to artist_path(artist.id) do %>
+          <div class="card" data-artist="<%= artist.id %>">
+            <!-- Artist image should go here -->
+            <%= link_to artist_path(artist.id), class: 'image' do %>
+              <img src="<%= artist.avatar_url %>">
+            <% end %>
+            <div class="content">
+              <%= link_to artist.username, artist_path(artist.id), class:'content' %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <% @test.each do |artist| %>
+      <p><%= artist.username %></p>
     <% end %>
-    <p>
-      <%= @test %>
-    </p>
   </div>
 <% end %>
