@@ -5,6 +5,7 @@ gem 'rspotify'
 gem 'pandora'
 gem 'soundcloud'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'pry-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

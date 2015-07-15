@@ -6,8 +6,29 @@
 
 <% if @results.present? %>
   <div class="results">
+    <h1>Songs</h1>
+    <div class="ui list">
+      <% @results.each do |song| %>
+        <div class="item" data-song="<%= song.id %>">
+          <img class="ui avatar image" src="<%= song.artwork_url %>">
+          <div class="content">
+            <a class="header"><%= song.title %></a>
+            <div class="description"><%= song.user.username %></div>
+            <% if song.explicit == true %>
+              <div class="explicit">
+                <p>Explicit</p>
+              </div>
+            <% end %>
+          </div>
+          <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
+        </div>
+      <% end %>
+    </div>
     <% @results.each do |result| %>
       <p><%= result.user.username %></p>
     <% end %>
+    <p>
+      <%= @test %>
+    </p>
   </div>
 <% end %>
