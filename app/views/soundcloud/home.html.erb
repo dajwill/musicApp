@@ -13,7 +13,10 @@
           <img class="ui avatar image" src="<%= song.artwork_url %>">
           <div class="content">
             <a class="header"><%= song.title %></a>
-            <div class="description"><%= song.user.username %></div>
+            <div class="description">
+              <%= song.user.username %>
+              <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2F&color=orange_transparent&size=16" style="width: 16px; height: 16px;"></iframe>
+            </div>
             <% if song.explicit == true %>
               <div class="explicit">
                 <p>Explicit</p>
@@ -41,7 +44,7 @@
       <% end %>
     </div>
     <% @test.each do |artist| %>
-      <p><%= artist.username %></p>
+      <p><img src="<%= artist.avatar_url %>" alt="" /></p>
     <% end %>
   </div>
 <% end %>
