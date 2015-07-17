@@ -1,8 +1,6 @@
 require 'RSpotify'
 require 'Soundcloud'
 
-client = Soundcloud.new(:client_id => Rails.application.secrets.sc_client_id)
-
 class Song
   # client = Soundcloud.new(:client_id => Rails.application.secrets.sc_client_id)
 
@@ -17,8 +15,9 @@ class Song
       @album = RSpotify::Album.search(query)
       puts "#{query} from #{@from}"
     elsif from == 'soundcloud'
-      @artists = client.get('/users', :q => query, :licence => 'cc-by-sa')
-      @songs = client.get('/tracks', :q => query, :licence => 'cc-by-sa')
+      # @client = Soundcloud.new(:client_id => Rails.application.secrets.sc_client_id)
+      @artists = ::SC_CLIENT.get('/users', :q => query, :license => 'cc-by-sa')
+      @songs = ::SC_CLIENT.get('/tracks', :q => query, :license => 'cc-by-sa')
       @album = nil
       puts "#{query} from #{from}"
     end
