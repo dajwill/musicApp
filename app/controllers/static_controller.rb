@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   include MusicHelper
+  include SoundcloudHelper
 
   def home
   end
@@ -9,6 +10,7 @@ class StaticController < ApplicationController
       @search = artist_find(params[:artist])
     else
       @search = user_search(params[:query]) if params[:query].present?
+      # @sc_search = soundcloud_search(params[:query]) if params[:query].present?
     end
 
     render :home

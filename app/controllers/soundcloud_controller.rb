@@ -7,7 +7,7 @@ class SoundcloudController < ApplicationController
   def search
     query = params[:q]
     @results = track_search(query)
-    @test = artist_search(query)
+    @test = soundcloud_search(query)
     render :home
 
   end

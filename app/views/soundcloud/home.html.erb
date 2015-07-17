@@ -4,11 +4,11 @@
   <%= submit_tag("Search") %>
 <% end %>
 
-<% if @results.present? %>
+<% if @test.present? %>
   <div class="results">
     <h1>Songs</h1>
-    <div class="ui list">
-      <% @results.each do |song| %>
+    <div class="ui list" id="sc-songs">
+      <% @test["tracks"].each do |song| %>
         <div class="item" data-song="<%= song.id %>">
           <img class="ui avatar image" src="<%= song.artwork_url %>">
           <div class="content">
@@ -28,8 +28,8 @@
       <% end %>
     </div>
     <h1>Artists</h1>
-    <div class="ui cards">
-      <% @test.each do |artist| %>
+    <div class="ui cards" id="sc-artists">
+      <% @test["artists"].each do |artist| %>
         <%= link_to artist_path(artist.id) do %>
           <div class="card" data-artist="<%= artist.id %>">
             <!-- Artist image should go here -->
@@ -43,7 +43,7 @@
         <% end %>
       <% end %>
     </div>
-    <% @test.each do |artist| %>
+    <% @test["artists"].each do |artist| %>
       <p><img src="<%= artist.avatar_url %>" alt="" /></p>
     <% end %>
   </div>
