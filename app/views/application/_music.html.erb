@@ -6,10 +6,10 @@
   </div>
   <div class="ui tab active" data-tab="artists">
     <h1>Artists</h1>
-    <div class="ui cards">
+    <div class="ui cards grid">
       <% @search["artist"].each do |artist| %>
         <%= link_to artist_path(artist.id) do %>
-          <div class="card" data-artist="<%= artist.id %>">
+          <div class="card grid-item" data-artist="<%= artist.id %>">
             <!-- Artist image should go here -->
             <% if artist.images.present? %>
               <%= link_to artist_path(artist.id), class: 'image' do %>

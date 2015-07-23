@@ -8,7 +8,7 @@
   <div class="results">
     <h1>Songs</h1>
     <div class="ui list" id="sc-songs">
-      <% @test["tracks"].each do |song| %>
+      <% @soundcloud.songs.each do |song| %>
         <div class="item" data-song="<%= song.id %>">
           <img class="ui avatar image" src="<%= song.artwork_url %>">
           <div class="content">
@@ -26,10 +26,27 @@
           <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
         </div>
       <% end %>
+      <!-- spotify -->
+      <% @spotify.songs.each do |song| %>
+        <div class="item" data-song="<%= song.id %>">
+          <img class="ui avatar image" src="<%= song.album.images.first["url"] %>">
+          <div class="content">
+            <a class="header"><%= song.name %></a>
+            <div class="description"><%= song.album.name %></div>
+            <% if song.explicit == true %>
+              <div class="explicit">
+                <p>Explicit</p>
+              </div>
+            <% end %>
+          </div>
+          <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
+        </div>
+      <% end %>
     </div>
+
     <h1>Artists</h1>
     <div class="ui cards" id="sc-artists">
-      <% @test["artists"].each do |artist| %>
+      <% @soundcloud.artists.each do |artist| %>
         <%= link_to artist_path(artist.id) do %>
           <div class="card" data-artist="<%= artist.id %>">
             <!-- Artist image should go here -->
@@ -42,9 +59,21 @@
           </div>
         <% end %>
       <% end %>
+      <!-- Spotify -->
+      <% @spotify.artists.each do |artist| %>
+        <%= link_to artist_path(artist.id) do %>
+          <div class="card grid-item" data-artist="<%= artist.id %>">
+            <!-- Artist image should go here -->
+            <% if artist.images.present? %>
+              <%= link_to artist_path(artist.id), class: 'image' do %>
+                <img src="<%= artist.images.first["url"] %>">
+              <% end %>
+            <% end %>
+            <div class="content">
+              <%= link_to artist.name, artist_path(artist.id), class:'content' %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <% @test["artists"].each do |artist| %>
-      <p><img src="<%= artist.avatar_url %>" alt="" /></p>
-    <% end %>
-  </div>
 <% end %>
