@@ -1,4 +1,4 @@
-class SoundcloudArtist
+class SoundcloudArtist < Artist
 
   def initialize result
     @name = result.username

@@ -1,66 +1,19 @@
-<% if @search.present? %>
-  <div class="ui tabular menu">
-    <div class="active item" data-tab="artists">Artists</div>
-    <div class="item" data-tab="albums">Albums</div>
-    <div class="item" data-tab="songs">Songs</div>
-  </div>
-  <div class="ui tab active" data-tab="artists">
-    <h1>Artists</h1>
-    <div class="ui cards grid">
-      <% @search["artist"].each do |artist| %>
-        <%= link_to artist_path(artist.id) do %>
-          <div class="card grid-item" data-artist="<%= artist.id %>">
-            <!-- Artist image should go here -->
-            <% if artist.images.present? %>
-              <%= link_to artist_path(artist.id), class: 'image' do %>
-                <img src="<%= artist.images.first["url"] %>">
-              <% end %>
-            <% end %>
-            <div class="content">
-              <%= link_to artist.name, artist_path(artist.id), class:'content' %>
-            </div>
-          </div>
-        <% end %>
+<h1>Artist</h1>
+<div class="grid data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'">
+  <% @search['artist'].results.each do |artist| %>
+    <div class="grid-item">
+      <% if artist.image.present? %>
+        <img src="<%= artist.image['url'] %>" alt="" class="image">
       <% end %>
     </div>
-  </div>
-  <div class="ui tab" data-tab="albums">
-    <h1>Albums</h1>
-    <div class="ui cards">
-      <% @search["album"].each do |album| %>
-        <div class="card" data-album="<%= album.id %>">
-          <a class="image">
-            <img src="<%= album.images.first["url"] %>">
-          </a>
-          <div class="content">
-            <%= link_to album.name, album_path(album.id), class:'content' %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="ui tab" data-tab="songs" id="songs">
-    <h1>Songs</h1>
-    <div class="ui list">
-      <% @search["tracks"].each do |song| %>
-        <div class="item" data-song="<%= song.id %>">
-          <img class="ui avatar image" src="<%= song.album.images.first["url"] %>">
-          <div class="content">
-            <a class="header"><%= song.name %></a>
-            <div class="description"><%= song.album.name %></div>
-            <% if song.explicit == true %>
-              <div class="explicit">
-                <p>Explicit</p>
-              </div>
-            <% end %>
-          </div>
-          <!-- <iframe src="https://embed.spotify.com/?uri=<%= song.uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> -->
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <% end %>
+</div>
 
-
-<% elsif @search.is_a? Hash %>
-  <p>No results found.</p>
-<% end %>
+<h1>Song</h1>
+<p>
+  <%= @search["tracks"].results %>
+</p>
+<h1>Album</h1>
+<p>
+  <%= @search["album"].results %>
+</p>

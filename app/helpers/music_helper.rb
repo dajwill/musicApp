@@ -2,8 +2,8 @@ module MusicHelper
 
 def top_tracks(tracks)
   track_list = tracks.map do |t|
-    {"name" => t.name, 
-     "album" => t.album.name, 
+    {"name" => t.name,
+     "album" => t.album.name,
      "image" => t.album.images.first["url"]
     }
   end
@@ -11,18 +11,15 @@ def top_tracks(tracks)
 end
 
 def artist_search(query)
-  artists = RSpotify::Artist.search(query)
-  return artists
+  ArtistSearch.new(query)
 end
 
 def track_search(query)
-  tracks = RSpotify::Track.search(query)
-  return tracks
+  SongSearch.new(query)
 end
 
 def album_search(query)
-  albums = RSpotify::Album.search(query)
-  return albums
+  AlbumSearch.new(query)
 end
 
 def user_search(query)

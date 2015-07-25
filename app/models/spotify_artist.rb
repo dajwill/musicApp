@@ -1,4 +1,4 @@
-class SpotifyArtist
+class SpotifyArtist < Artist
 
   def initialize result
     @name = result.name
