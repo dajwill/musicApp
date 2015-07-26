@@ -1,11 +1,11 @@
 window.activateGallery = ->
-  $items = $('.grid-item')
+  $items = $('.gallery-item')
   $items.hide()
-  $container = $('.grid')
+  $container = $('.gallery')
   $container.imagesLoaded ->
     $items.fadeIn()
     $container.masonry
-      itemSelector: '.grid-item'
+      itemSelector: '.gallery-item'
       columnwidth: 300
       gutter: 20
       isFitWidth: true
