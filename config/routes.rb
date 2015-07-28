@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/soundcloud' => 'soundcloud#home'
   get '/soundcloud/search' => 'soundcloud#search', as: 'sc_search'
 
+  resources :playlists
+
   resources :albums, only: [:show]
 
   resources :artists, only: [:show]
@@ -11,6 +13,13 @@ Rails.application.routes.draw do
   root 'static#home'
   get '/about' => 'static#about'
   get '/search' => 'static#search', as: 'search'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
