@@ -1,10 +1,10 @@
 window.activateSongActions = ->
    $("#song").hover(
         ->
-          $(@).find(".ellipsis").fadeIn();
+          $(@).find(".ui.dropdown").fadeIn();
         ,
         ->
-          $(@).find(".ellipsis").fadeOut();
+          $(@).find(".ui.dropdown").fadeOut();
     );
 $ ->
   activateSongActions()
