@@ -4,6 +4,7 @@ class SpotifyArtist < Artist
     @name = result.name
     @id = result.id
     @image = result.images.first
+    @source = 'spotify'
   end
 
 end

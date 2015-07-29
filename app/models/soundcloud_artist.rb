@@ -4,6 +4,7 @@ class SoundcloudArtist < Artist
     @name = result.username
     @id = result.id
     @image = result.avatar_url
+    @source = 'soundcloud'
   end
 
 end

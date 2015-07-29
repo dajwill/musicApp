@@ -1,73 +1,98 @@
 <% if @search.present? %>
-  <h1>Artist</h1>
+  <div class="ui tabular menu">
+    <div class="active item" data-tab="artists">Artists</div>
+    <div class="item" data-tab="albums">Albums</div>
+    <div class="item" data-tab="songs">Songs</div>
+  </div>
 
-  <div class="ui link cards gallery">
-    <% @search['artist'].results.each do |artist| %>
-      <div class="card gallery-item">
-        <div class="image">
-          <% if artist.image.present? %>
-            <img src="<%= artist.image['url'] %>" alt="" />
+  <div class="ui active tab" data-tab="artists">
+    <h1>Artist</h1>
+
+    <div class="ui link cards gallery">
+      <% @search['artist'].results.each do |artist| %>
+        <div class="card gallery-item">
+          <div class="image">
+            <% if artist.source == 'spotify' %>
+              <% if artist.image.present? %>
+                <img src="<%= artist.image['url'] %>" alt="" />
+              <% end %>
+            <% end %>
+          </div>
+          <div class="content">
+            <div class="header">
+              <%= artist.name %>
+            </div>
+          </div>
+          <% if current_user %>
+            <div class="extra content">
+              <span class="left floated">
+                <% if artist.source == 'spotify' %>
+                  <i class="spotify icon"></i>
+                <% else %>
+                  <i class="soundcloud icon"></i>
+                <% end %>
+              </span>
+              <span class="right floated">
+                <div class="ui dropdown">
+                  <i class="sidebar icon"></i>
+                  <div class="menu">
+                    <div class="item">
+                      <i class="add circle icon"></i>
+                      Add to playlist
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </div>
           <% end %>
         </div>
-        <div class="content">
-          <div class="header">
-            <%= artist.name %>
-          </div>
-        </div>
-        <div class="extra content">
-          <span class="right floated">
-            <div class="ui dropdown">
-              <i class="sidebar icon"></i>
-              <div class="menu">
-                <div class="item">
-                  <i class="add circle icon"></i>
-                  Add to playlist
-                </div>
-              </div>
-            </div>
-          </span>
-        </div>
-      </div>
-    <% end %>
-    <div class="card gallery-item">
-      <div class="image">
-        <img src="http://lorempixel.com/400/200/">
-      </div>
-      <div class="content">
-        <div class="header">Matt Giampietro</div>
-        <div class="meta">
-          <a>Friends</a>
-        </div>
-        <div class="description">
-          Matthew is an interior designer living in New York.
-        </div>
-      </div>
-      <div class="extra content">
-        <span class="right floated">
-          <div class="ui dropdown">
-            <i class="sidebar icon"></i>
-            <div class="menu">
-              <div class="item">
-                <i class="add circle icon"></i>
-                Add to playlist
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <i class="user icon"></i>
-          75 Friends
-        </span>
-      </div>
+      <% end %>
     </div>
   </div>
 
-  <h1>Song</h1>
-  <p>
-    <%= @search["tracks"].results %>
-  </p>
-  <h1>Album</h1>
-  <p>
-    <%= @search["album"].results %>
-  </p>
+  <div class="ui tab" data-tab="albums">
+    <h1>Album</h1>
+    <p>
+      <%= @search["album"].results %>
+    </p>
+  </div>
+
+  <div class="ui tab" data-tab="songs">
+    <div class="ui relaxed divided list">
+      <% @search['song'].results.each do |song| %>
+        <div class="item" id="song" data-song="<%= song.id %>">
+          <div class="ui grid">
+            <div class="row">
+              <div class="one wide column">
+                <img class="ui avatar image right floated" src="<%= song.artwork %>">
+              </div>
+              <div class="four wide column center aligned">
+                <div class="content">
+                  <a class="header"><%= song.title %></a>
+                </div>
+              </div>
+              <div class="two wide column center aligned">
+                <% if song.explicit.present? %>
+                  <% if song.explicit == true %>
+                    <div class="explicit">
+                      <p>Explicit</p>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="one wide column center aligned">
+                <i class="ellipsis vertical icon"></i>
+              </div>
+              <div class="four wide column center aligned">
+                <div class="description"><%= song.album %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
 <% end %>

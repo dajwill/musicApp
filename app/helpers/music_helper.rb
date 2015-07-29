@@ -14,7 +14,7 @@ def artist_search(query)
   ArtistSearch.new(query)
 end
 
-def track_search(query)
+def song_search(query)
   SongSearch.new(query)
 end
 
@@ -23,7 +23,7 @@ def album_search(query)
 end
 
 def user_search(query)
-  {"artist" => artist_search(query), "tracks" => track_search(query), "album" => album_search(query)}
+  {"artist" => artist_search(query), "song" => song_search(query), "album" => album_search(query)}
 end
 
 def artist_find(artist_id)

@@ -1,3 +1,28 @@
+// Application styling
+.ui.segment {
+  margin-top: 50px;
+  overflow-x: scroll;
+}
+
+
+// Search results (_music.html.erb)
+
+.ui.tabular.menu {
+  .item {
+    cursor: pointer
+  }
+}
+
+// Song tab
+
+.ui.relaxed.divided.list {
+  min-width: 970px;
+
+  i {
+    display: none;
+  }
+}
+
 #songs iframe {
   display: none;
 

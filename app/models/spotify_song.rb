@@ -8,6 +8,9 @@ class SpotifySong < Song
         @featured_artist << artist.name
       end
     end
-    @artwork = result.album.images.first
+    @album = result.album.name
+    @artwork = result.album.images.first['url']
+    @id = result.id
+    @explicit = result.explicit
   end
 end
