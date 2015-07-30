@@ -1,5 +1,7 @@
 $("#music").html("<%= j render("music") %>");
 history.pushState(null, '', '<%= url_for(params) %>')
+activateGallery()
 activateSearchTab()
 activatePlayer()
-activateGallery()
+activateCardMenu()
+activateSongActions()

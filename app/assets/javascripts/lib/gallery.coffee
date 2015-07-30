@@ -6,7 +6,7 @@ window.activateGallery = ->
     $items.fadeIn()
     $container.masonry
       itemSelector: '.gallery-item'
-      # columnwidth: 300
+      columnwidth: 300
       isFitWidth: true
 
 $ ->
