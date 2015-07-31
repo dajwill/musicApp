@@ -1,4 +1,5 @@
 window.activateGallery = ->
+  console.log("test")
   $items = $('.gallery-item')
   $items.hide()
   $container = $('.gallery')

@@ -48,6 +48,15 @@
                     <div class="item">
                       <i class="add circle icon"></i>
                       Add to playlist
+                      <div class="menu">
+                        <% User.find(current_user.id).playlists.each do |playlist| %>
+                          <div class="item"><%= playlist.name %></div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <i class="add circle icon"></i>
+                      Create new playlist
                     </div>
                   </div>
                 </div>
@@ -61,7 +70,5 @@
       <% end %>
     </div>
   </div>
-
-
 
 <% end %>
