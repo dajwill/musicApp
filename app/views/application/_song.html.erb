@@ -25,21 +25,30 @@
               <div class="ui dropdown">
                 <i class="sidebar icon"></i>
                 <div class="menu">
-                  <div class="item">
+                  <div class="item add-song">
                     <i class="add circle icon"></i>
                     Add to playlist
                     <div class="menu">
                       <% User.find(current_user.id).playlists.each do |playlist| %>
-                        <div class="item"><%= playlist.name %></div>
+                        <div class="playlist item" data-playlist="<%= playlist.id %>"><%= playlist.name %></div>
                       <% end %>
                     </div>
                   </div>
-                  <div class="item">
+                  <div class="item modal">
                     <i class="add circle icon"></i>
                     Create new playlist
-                    <%= current_user.id %>
-                    <div class="ui fluid popup top left transition hidden" data-title="Using click events">
-                      <%= render 'form' %>
+                    <div class="ui modal">
+                      <i class="close icon"></i>
+                      <div class="header">
+                        Create New Playlist
+                      </div>
+                      <div class="content">
+                        <%= render 'form' %>
+                      </div>
+                      <div class="actions">
+                        <div class="ui button">Cancel</div>
+                        <div class="ui button">OK</div>
+                      </div>
                     </div>
                   </div>
                 </div>
