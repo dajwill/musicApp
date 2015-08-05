@@ -64,8 +64,7 @@ class PlaylistsController < ApplicationController
 
   def add_song
     test = spotify_song_normalizer(params[:song])
-    @song = Song.find_or_create(test)
-    sdghgf
+    @song = Song.find_or_create(test).save
   end
 
   private
