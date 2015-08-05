@@ -1,11 +1,13 @@
 window.activateSongActions = ->
-   $(".song.item").hover(
-        ->
-          $(@).find(".ui.dropdown").fadeIn('fast');
-        ,
-        ->
-          $(@).find(".ui.dropdown").fadeOut('fast');
-    );
+  $(document).on 'click', '.playlist.item', ->
+    playlist_id = $(@).attr('data-playlist')
+    song = $(@).closest('.song.item').attr('data-song')
+    $.ajax
+      method: "PUT"
+      url: "/playlists/#{playlist_id}/add_song"
+      data:
+        song: song
+
 
 window.activateSongModal = ->
   $('.item.modal').on('click', ->
@@ -17,10 +19,7 @@ window.activateSongModal = ->
     )
 
 window.addSongToPlaylist = ->
-  $('.playlist.item').on('click', ->
-    console.log($(@).attr('data-playlist'))
-    console.log($(@).closest('.song.item').attr('data-song'))
-    )
+
 
 $ ->
   activateSongActions()

@@ -1,7 +1,7 @@
 <% if @song.present? %>
   <div class="ui relaxed divided list">
     <% @song.results.each do |song| %>
-      <div class="song item" data-song="<%= song.id %>">
+      <div class="song item" data-song="<%= song.attributes %>">
         <div class="ui grid">
           <div class="row">
             <div class="one wide column">

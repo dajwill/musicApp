@@ -6,5 +6,7 @@ class SoundcloudSong < Song
     @album = nil
     @artwork = result.user.avatar_url
     @explicit = nil
+    @source_id = nil
+    @source = 'soundcloud'
   end
 end

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/soundcloud' => 'soundcloud#home'
   get '/soundcloud/search' => 'soundcloud#search', as: 'sc_search'
 
-  resources :playlists
+  resources :playlists do
+    put 'add_song'
+  end
 
   resources :albums, only: [:show]
 

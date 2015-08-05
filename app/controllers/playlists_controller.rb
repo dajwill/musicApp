@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  include SongNormalizationHelper
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   # GET /playlists
@@ -59,6 +60,12 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def add_song
+    test = spotify_song_normalizer(params[:song])
+    @song = Song.find_or_create(test)
+    sdghgf
   end
 
   private

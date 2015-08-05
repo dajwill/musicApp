@@ -10,7 +10,9 @@ class SpotifySong < Song
     end
     @album = result.album.name
     @artwork = result.album.images.first['url']
-    @id = result.id
+    @source_id = result.id
     @explicit = result.explicit
+    @source = 'spotify'
   end
+
 end

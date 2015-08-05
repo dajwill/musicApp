@@ -23,7 +23,12 @@
   min-width: 970px;
 
   .ui.dropdown {
-    display: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
