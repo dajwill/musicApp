@@ -1,4 +1,5 @@
 class SongSearch
+  include SongNormalizationHelper
 
   def initialize query
     @spotify_results = RSpotify::Track.search(query)
@@ -8,10 +9,10 @@ class SongSearch
   def results
     results = []
     @spotify_results.each do |song|
-      results << SpotifySong.new(song)
+      results << Song.new(song_normalizer(song, 'spotify'))
     end
     @soundcloud_results.each do |song|
-      results << SoundcloudSong.new(song)
+      results << Song.new(song_normalizer(song, 'soundcloud'))
     end
     results
   end

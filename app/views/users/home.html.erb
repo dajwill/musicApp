@@ -1,0 +1,6 @@
+<%= link_to 'Sign in with Spotify', '/auth/spotify' %>
+<% if !@spotify_user.nil? %>
+  <%= @spotify_user.email %>
+  <%= @hash %>
+  <%= @hash['credentials'] %>
+<% end %>

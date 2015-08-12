@@ -11,6 +11,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
+    @playlist = Playlist.find(params[:id])
   end
 
   # GET /playlists/new
@@ -25,11 +26,12 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = Playlist.new(playlist_params)
+    @playlist = Playlist.new(playlist_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @playlist.save
         format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
+        format.js {  render :create}
         format.json { render :show, status: :created, location: @playlist }
       else
         format.html { render :new }
@@ -63,8 +65,14 @@ class PlaylistsController < ApplicationController
   end
 
   def add_song
-    test = spotify_song_normalizer(params[:song])
-    @song = Song.find_or_create(test).save
+    @playlist = Playlist.find(params[:playlist_id])
+    @song = Song.find_or_create(JSON.parse(params[:song]).merge(user_id: current_user.id, playlist_id: params[:playlist_id]))
+    respond_to do |format|
+      if @song.save
+        format.js { render :add_song }
+        format.json { render :show, status: :ok, location: @song.playlist }
+      end
+    end
   end
 
   private

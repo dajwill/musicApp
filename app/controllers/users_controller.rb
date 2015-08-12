@@ -14,6 +14,20 @@ class UsersController < ApplicationController
     end
 	end
 
+  def home
+  end
+
+  def spotify
+    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    @hash = @spotify_user.to_hash
+    # Now you can access user's private data, create playlists and much more
+
+    # Access private data
+    # spotify_user.country #=> "US"
+    # spotify_user.email   #=> "example@email.com"
+    render :home
+  end
+
 private
 
 	def user_params

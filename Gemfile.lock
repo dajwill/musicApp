@@ -189,6 +189,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     slop (3.6.0)
     soundcloud (0.3.1)
       hashie
@@ -237,6 +240,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   semantic-ui-sass!
+  simple_form
   soundcloud
   sqlite3
   turbolinks

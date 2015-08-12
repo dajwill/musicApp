@@ -2,5 +2,7 @@ class Song < ActiveRecord::Base
   belongs_to :playlist
   belongs_to :user
 
-  attr_reader :title, :primary_artist, :featured_artist, :artwork, :album, :song_id, :explicit, :source, :source_id
+  def self.find_or_create(attributes)
+    Song.where(attributes).first || Song.create(attributes)
+  end
 end

@@ -23,13 +23,16 @@
   min-width: 970px;
 
   .ui.dropdown {
-    opacity: 0;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 1;
-    }
+    display: none
+    // opacity: 0;
+    // transition: opacity 0.2s;
   }
+
+  // &:hover {
+  //   .ui.dropdown {
+  //     opacity: 1;
+  //   }
+  // }
 }
 
 #songs iframe {

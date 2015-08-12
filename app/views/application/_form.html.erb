@@ -1,26 +1,15 @@
-<%= form_for(User.find(current_user.id).playlists.new) do |f| %>
-  <% if User.find(current_user.id).playlists.new.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(User.find(current_user.id).playlists.new.errors.count, "error") %> prohibited this playlist from being saved:</h2>
-
-      <ul>
-      <% User.find(current_user.id).playlists.new.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field no-display">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id, value: current_user.id %>
+<i class="close icon"></i>
+<div class="header">
+  Create New Playlist
+</div>
+<div class="content">
+  <div class="ui form">
+    <%= simple_form_for(User.find(current_user.id).playlists.new, remote: true) do |f| %>
+      <%= f.input :name, wrapper_html: { class: 'field' }%>
+      <div class="actions">
+        <div class="ui button">Cancel</div>
+        <%= f.button :submit, class: 'ui button'%>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
