@@ -18,19 +18,30 @@ window.activateSongActions = ->
 
 
 window.activateSongModal = ->
-  $('.item.modal').on('click', ->
+  $(document).on 'click', '.item.modal', ->
     $('.ui.modal')
       .modal({
         blurring: true
       })
       .modal('show')
-    )
 
-window.addSongToPlaylist = ->
-
+window.activateLoadEmbed =  ->
+  $(document).on 'hover', '.song.item', ->
+    $(@).closest('#music-results').prepend """
+        <div class="ui embed" data-url="https://www.youtube.com/embed/pfdu_gTry8E" data-placeholder="/images/bear-waving.jpg"></div>
+    """
+  $(document).on 'click', '.play.icon', ->
+    song = JSON.parse($(@).closest('.song.item').attr('data-song'))
+    console.log(song['source'])
+    if song.source == 'spotify'
+      console.log('test')
+      $(@).closest('#music-results').prepend """
+        <h1>Hello</h1>
+      """
+      $('.url.example .ui.embed').show();
 
 $ ->
   activateShowActions()
   activateSongActions()
   activateSongModal()
-  addSongToPlaylist()
+  activateLoadEmbed()

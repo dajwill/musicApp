@@ -5,7 +5,7 @@
 <% if @song.present? %>
   <div class="ui relaxed divided list">
     <% @song.results.each do |song| %>
-      <div class="song item" data-song="<%= song.attributes.to_json %>">
+      <div class="song item" data-song="<%= song.attributes.to_json %>" data-id="<%= song.source_id %>">
         <div class="ui grid">
           <div class="row">
             <div class="one wide column">
@@ -52,6 +52,9 @@
             </div>
             <div class="four wide column center aligned">
               <div class="description"><%= song.album %></div>
+            </div>
+            <div class="one wide column">
+              <i class="play icon"></i>
             </div>
           </div>
         </div>

@@ -66,9 +66,10 @@ class PlaylistsController < ApplicationController
 
   def add_song
     @playlist = Playlist.find(params[:playlist_id])
-    @song = Song.find_or_create(JSON.parse(params[:song]).merge(user_id: current_user.id, playlist_id: params[:playlist_id]))
+    @song = Song.find_or_create(JSON.parse(params[:song]).merge(user_id: current_user.id))
+    @playlist_song = PlaylistSong.create(playlist_id: @playlist.id, song_id: @song.id)
     respond_to do |format|
-      if @song.save
+      if @playlist_song.save
         format.js { render :add_song }
         format.json { render :show, status: :ok, location: @song.playlist }
       end
