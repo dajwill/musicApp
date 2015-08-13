@@ -77,8 +77,9 @@ class PlaylistsController < ApplicationController
   end
 
   def sort
-    params[:playlist_id].each_with_index do |id, index|
-      Faq.update_all(['position=?', index+1], ['id=?', id])
+    # Should target an array of re-organized song_ids
+    params[:playlist].each_with_index do |id, index|
+      Playlist.find(params[:id]).update(['position=?', index+1], ['id=?', id])
     end
     render :nothing => true
   end

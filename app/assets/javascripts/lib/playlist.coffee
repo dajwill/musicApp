@@ -3,6 +3,7 @@ window.activateOrderPlaylist = ->
   console.log playlist_id
   playlist_songs = []
   song_div = $('.ui-sortable-handle')
+  console.log song_div
   $.each(song_div, (index, div) ->
     console.log index
     console.log(div['id'])
