@@ -76,6 +76,13 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def sort
+    params[:playlist_id].each_with_index do |id, index|
+      Faq.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist

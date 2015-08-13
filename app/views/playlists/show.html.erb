@@ -2,66 +2,68 @@
 
 <h1><%= @playlist.name %></h1>
 
-<div class="ui relaxed divided list">
+<div class="ui relaxed divided list" id="playlist-songs" data-playlist="<%= @playlist.id %>">
   <% @playlist.songs.each do |song| %>
-    <div class="song item" data-song="<%= song.attributes.to_json %>">
-      <div class="ui grid">
-        <div class="row">
-          <div class="one wide column">
-            <img class="ui avatar image right floated" src="<%= song.artwork %>">
-          </div>
-          <div class="four wide column center aligned">
-            <div class="content">
-              <a class="header"><%= song.title %></a>
+    <%= content_tag_for :div, song do %>
+      <div class="song item" data-song="<%= song.attributes.to_json %>" id="playlist-song">
+        <div class="ui grid">
+          <div class="row">
+            <div class="one wide column">
+              <img class="ui avatar image right floated" src="<%= song.artwork %>">
             </div>
-          </div>
-          <div class="two wide column center aligned">
-            <% if song.explicit.present? %>
-              <% if song.explicit == true %>
-                <div class="explicit">
-                  <p>Explicit</p>
+            <div class="four wide column center aligned">
+              <div class="content">
+                <a class="header"><%= song.title %></a>
+              </div>
+            </div>
+            <div class="two wide column center aligned">
+              <% if song.explicit.present? %>
+                <% if song.explicit == true %>
+                  <div class="explicit">
+                    <p>Explicit</p>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="one wide column center aligned">
+              <% if current_user %>
+                <div class="ui dropdown">
+                  <i class="sidebar icon"></i>
+                  <div class="menu">
+                    <div class="item add-song">
+                      <i class="add circle icon"></i>
+                      Add to playlist
+                      <div class="menu">
+                        <% User.find(current_user.id).playlists.each do |playlist| %>
+                          <div class="playlist item" data-playlist="<%= playlist.id %>"><%= playlist.name %></div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="item modal">
+                      <i class="add circle icon"></i>
+                      Create new playlist
+                      <div class="ui modal">
+                        <i class="close icon"></i>
+                        <div class="header">
+                          Create New Playlist
+                        </div>
+                        <div class="actions">
+                          <div class="ui button">Cancel</div>
+                          <div class="ui button">OK</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               <% end %>
-            <% end %>
-          </div>
-          <div class="one wide column center aligned">
-            <% if current_user %>
-              <div class="ui dropdown">
-                <i class="sidebar icon"></i>
-                <div class="menu">
-                  <div class="item add-song">
-                    <i class="add circle icon"></i>
-                    Add to playlist
-                    <div class="menu">
-                      <% User.find(current_user.id).playlists.each do |playlist| %>
-                        <div class="playlist item" data-playlist="<%= playlist.id %>"><%= playlist.name %></div>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="item modal">
-                    <i class="add circle icon"></i>
-                    Create new playlist
-                    <div class="ui modal">
-                      <i class="close icon"></i>
-                      <div class="header">
-                        Create New Playlist
-                      </div>
-                      <div class="actions">
-                        <div class="ui button">Cancel</div>
-                        <div class="ui button">OK</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="four wide column center aligned">
-            <div class="description"><%= song.album %></div>
+            </div>
+            <div class="four wide column center aligned">
+              <div class="description"><%= song.album %></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 

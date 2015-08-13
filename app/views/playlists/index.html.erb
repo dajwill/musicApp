@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Playlists</h1>
+<h1>Playlists</h1>
 
 <table>
   <thead>
@@ -25,5 +25,20 @@
 </table>
 
 <br>
+
+<div class="ui link cards gallery">
+  <% @playlists.each do |playlist| %>
+    <div class="card gallery-item">
+      <div class="image">
+        <img src="<%= Song.find(playlist.playlist_songs.find_by(position: 1).song_id).artwork %>" alt="" />
+      </div>
+      <div class="content">
+        <div class="header">
+          <%= link_to playlist.name, playlist_path(playlist.id) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to 'New Playlist', new_playlist_path %>
