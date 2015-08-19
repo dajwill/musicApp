@@ -2,7 +2,7 @@
 
 <h1><%= @playlist.name %></h1>
 
-<div class="ui relaxed divided list" id="playlist-songs" data-playlist="<%= @playlist.id %>">
+<div class="ui relaxed divided list" id="playlist-songs" data-playlist="<%= @playlist.id %>" data-update-url="<%= playlist_song_sort_path %>">
   <% @playlist.songs.each do |song| %>
     <%= content_tag_for :div, song do %>
       <div class="song item" data-song="<%= song.attributes.to_json %>" id="playlist-song">

@@ -76,14 +76,6 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  def sort
-    # Should target an array of re-organized song_ids
-    params[:playlist].each_with_index do |id, index|
-      Playlist.find(params[:id]).update(['position=?', index+1], ['id=?', id])
-    end
-    render :nothing => true
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist

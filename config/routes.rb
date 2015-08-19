@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   resources :playlists do
     put 'add_song'
-    put 'sort'
   end
+
+  put 'playlist_song_sort' => 'playlist_songs#sort'
 
   resources :albums, only: [:show]
 
