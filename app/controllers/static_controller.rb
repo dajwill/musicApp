@@ -7,11 +7,11 @@ class StaticController < ApplicationController
 
   def search
     if params[:artist].present?
-      @artist = ArtistSearch.async.new(params[:artist])
-      @album = AlbumSearch.async.new(params[:artist])
+      @artist = ArtistSearch.new(params[:artist])
+      @album = AlbumSearch.new(params[:artist])
       @song = SongSearch.new(params[:artist])
     else
-      @artist = ArtistSearch.async.new(params[:query]) if params[:query].present?
+      @artist = ArtistSearch.new(params[:query]) if params[:query].present?
       @album = AlbumSearch.new(params[:query]) if params[:query].present?
       @song = SongSearch.new(params[:query]) if params[:query].present?
     end

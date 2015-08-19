@@ -1,6 +1,3 @@
-require 'RSpotify'
-require 'Soundcloud'
-
 class Search
   # client = Soundcloud.new(:client_id => Rails.application.secrets.sc_client_id)
 
