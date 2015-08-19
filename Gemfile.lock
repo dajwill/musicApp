@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/doabit/semantic-ui-sass.git
-  revision: 7bc470190e22adf874fd7458387697628ca6b87f
-  specs:
-    semantic-ui-sass (1.11.5.0)
-      sass (~> 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -198,6 +191,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    semantic-ui-sass (2.0.7.0)
+      sass (>= 3.2)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -251,7 +246,7 @@ DEPENDENCIES
   rspotify
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  semantic-ui-sass!
+  semantic-ui-sass
   simple_form
   soundcloud
   sqlite3
