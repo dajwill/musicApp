@@ -1,7 +1,5 @@
 window.activateSearchTab = ->
-  $('.tabular.menu .item').tab
-    auto: true
-    path: '/'
+  $('.tabular.menu .item').tab()
 
 $ ->
   activateSearchTab()
