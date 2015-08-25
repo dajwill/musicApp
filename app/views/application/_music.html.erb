@@ -1,24 +1,26 @@
-<div class="ui tabular menu">
-  <div class="active item" data-tab="artists">Artists</div>
-  <div class="item" data-tab="albums">Albums</div>
-  <div class="item" data-tab="songs">Songs</div>
-</div>
-
-<div class="ui active tab" data-tab="artists">
-  <h1>Artist</h1>
-  <div id="artist">
-    <%= render 'artist' %>
+<% if @artist.present? || @album.present? || @song.present? %>
+  <div class="ui tabular menu">
+    <div class="active item" data-tab="artists">Artists</div>
+    <div class="item" data-tab="albums">Albums</div>
+    <div class="item" data-tab="songs">Songs</div>
   </div>
-</div>
 
-<div class="ui tab" data-tab="albums">
-  <div id="album">
-    <%= render 'album' %>
+  <div class="ui active tab" data-tab="artists">
+    <h1>Artist</h1>
+    <div id="artist">
+      <%= render 'artist' %>
+    </div>
   </div>
-</div>
 
-<div class="ui tab" data-tab="songs">
-  <div id="song">
-    <%= render 'song' %>
+  <div class="ui tab" data-tab="albums">
+    <div id="album">
+      <%= render 'album' %>
+    </div>
   </div>
-</div>
+
+  <div class="ui tab" data-tab="songs">
+    <div id="song">
+      <%= render 'song' %>
+    </div>
+  </div>
+<% end %>

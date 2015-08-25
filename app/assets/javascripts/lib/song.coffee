@@ -1,8 +1,10 @@
 window.activateShowActions = ->
   $(".song.item").hover ->
-    $(@).find(".ui.dropdown").fadeIn('1000');
+    $(@).find(".ui.dropdown").fadeIn('1000')
+    $(@).find(".play.icon").fadeIn('1000')
   , ->
     $(@).find(".ui.dropdown").fadeOut('50');
+    $(@).find(".play.icon").fadeOut('50');
 
 
 window.activateSongActions = ->

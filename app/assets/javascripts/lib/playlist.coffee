@@ -1,4 +1,4 @@
-window.activateOrderPlaylist = ->
+$ ->
   playlist_id = $('#playlist-songs').data('playlist')
   console.log(playlist_id)
   $('#playlist-songs').sortable
@@ -11,6 +11,3 @@ window.activateOrderPlaylist = ->
         success: ->
           $sortables.each (index) ->
             $(@).children('#playlist_song').first().html index+1
-
-$ ->
-  activateOrderPlaylist()
