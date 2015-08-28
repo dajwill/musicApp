@@ -1,6 +1,5 @@
 class StaticController < ApplicationController
   include MusicHelper
-  require 'concurrent'
 
   def home
   end
@@ -15,6 +14,9 @@ class StaticController < ApplicationController
       @album = AlbumSearch.new(params[:query]) if params[:query].present?
       @song = SongSearch.new(params[:query]) if params[:query].present?
     end
+    @artist.async.results
+    @album.async.results
+    @song.async.results
 
     render :home
 

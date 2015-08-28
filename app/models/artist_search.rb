@@ -1,15 +1,20 @@
+require 'Concurrent'
+
 class ArtistSearch
+  include Concurrent::Async
+
   def initialize query
-    @spotify_results = RSpotify::Artist.search(query)
-    @soundcloud_restults = ::SC_CLIENT.get('/users', :q => query, :license => 'cc-by-sa')
+    @query = query
   end
 
   def results
+    spotify_results = RSpotify::Artist.search(@query)
+    soundcloud_restults = ::SC_CLIENT.get('/users', :q => @query, :license => 'cc-by-sa')
     results = []
-    @spotify_results.each do |artist|
+    spotify_results.each do |artist|
       results << SpotifyArtist.new(artist)
     end
-    @soundcloud_restults.each do |artist|
+    soundcloud_restults.each do |artist|
       results << SoundcloudArtist.new(artist)
     end
     results
